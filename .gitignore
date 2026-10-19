@@ -1,0 +1,39 @@
+# ==========================================
+# Django & Python Core
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+local_settings.py
+
+# ==========================================
+# Environments & Secrets
+# ==========================================
+.env
+.venv
+venv/
+env/
+ENV/
+*.env
+
+# ==========================================
+# Databases & Media
+# ==========================================
+*.sqlite3
+*.sqlite3-journal
+media/
+staticfiles/
+
+# ==========================================
+# IDEs & OS Specific
+# ==========================================
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+.DS_Store
+Thumbs.db

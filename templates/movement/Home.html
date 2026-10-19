@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div style="position: sticky;top: 0px; background-color: black; color: wheat; display: flex; flex-direction: column; justify-content: center;align-items: center;margin-block:0.5rem;gap: 1rem;">
+        <div>
+            <form action="" method="post">
+                {% csrf_token %}
+                {% for field in go_to_date_form %}
+                {{ field.label_tag }} : {{ field }}
+                {% endfor %}
+                <input type="hidden" name="go-to-date">
+                <button type="submit">Go to Date</button>
+            </form>
+        </div>
+        
+        <div>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="hidden" name="movement-recorder">
+                <button style="font-size: 1.5em;" type="submit">RECORD MOVEMENT</button>
+            </form>
+        </div>
+
+        <div>
+            {{ today }}
+        </div>
+    </div>
+    <ol type="1">
+    {% for movement in movements %}
+        <li>
+            {{ movement.time|time|title }}
+            <a href="{% url 'movement:delete-movement' movement.id %}">
+                <button>DELETE</button>
+            </a>
+        </li>    
+    {% endfor %}
+    </ol>
+</body>
+</html>
