@@ -43,7 +43,10 @@ body{
 .click_me{
     padding-inline: 1rem;
     padding-block: 0.3rem;
-    background-color: rgb(6, 116, 90);
+    background-color: rgb(18, 75, 62);
+    color: rgb(203, 240, 250);
+    filter:drop-shadow(5px 3px 5px red);
+    margin-block: 0.3rem;
 }
 
 .click_me_delete{
