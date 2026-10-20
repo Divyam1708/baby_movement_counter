@@ -20,7 +20,23 @@
 .counter_content{
     border: 2px solid red;
     padding: 0.2rem;
-    height: 100svh;
+    max-height: 100svh;
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.display_flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fit_content_width{
+    max-width: fit-content;
 }
 
 ol{
@@ -33,10 +49,16 @@ ol{
     align-items: center;
 }
 
+a{
+    text-decoration: none;
+}
+
 .headline{
     font-size: 1.5rem;
     text-align: center; 
     border-bottom: 5px solid;
+    display: flex;
+    align-items: center;
 }
 
 .time_box{
@@ -45,5 +67,4 @@ ol{
     width: fit-content;
     padding: 0.1rem;
     border: 2px solid;
-
 }

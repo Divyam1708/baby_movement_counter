@@ -86,7 +86,11 @@ WSGI_APPLICATION = 'baby_movement_counter.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
+    # "default": {
+    #     "ENGINE":"django.db.backends.sqlite3",
+    #     "NAME":BASE_DIR/'db.sqite3'
+    # },
+    "default":{
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "neondb",
         "USER": "neondb_owner",

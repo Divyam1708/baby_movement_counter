@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MONTH WISE PER DAY</title>
+    <link rel="stylesheet" href="{% static 'style/movement/base.css' %}">
+    <link rel="shortcut icon" href="{% static 'media/logos/counter_icon.png' %}" type="image/png">
+</head>
+<body>
+
+    <div class="top_bar">
+        <a href="{% url 'movement:home' %}">
+            <button>
+                <= BACK TO HOME
+            </button>
+        </a>
+    </div>
+    <div class="display_flex">
+        <p class="headline">
+            For month: {{ today_month }}th, {{ today_year }}
+        </p>
+
+        <table class="fit_content_width" border="1px">
+            <tr>
+                <th>
+                    DATE    
+                </th>
+                <th>
+                    MOVEMENT COUNT
+                </th>
+            </tr>
+            {% for movement in per_day_movement %}
+            <tr>
+                <td>
+                    <a href="{% url 'movement:go-to-date' forloop.counter today_month today_year %}">
+                        {{ forloop.counter }}/{{ today_month }}/{{ today_year }}
+                    </a>
+                </td>
+                <td style="text-align: center;">
+                    {{ movement }}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

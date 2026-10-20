@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse
 from .models import Movement
 from .forms import CreateMovement, GoToDateForm
@@ -93,9 +93,30 @@ def GoToDate(request, arg_1_dd,arg_2_mm,arg_3_yyyy):
             'movements':movements,
             'form':form,
             'date':f'{arg_1_dd}/{arg_2_mm}/{arg_3_yyyy}',
+            'month':arg_2_mm,
             'movement_count':movement_count_today,
         }
     )
     
     
+def MonthWiseDayCounter(request, arg_1_month):
+    today_month=timezone.localdate().month
+    today_year=timezone.localdate().year
+    movements=Movement.objects.filter(
+        time__month=arg_1_month
+    )
+    movement_count=[]
+    for day in range(1,32):
+        movement_count.append(movements.filter(time__day=day).count())
+        
+    per_day_count_this_month=[count for count in movement_count]
     
+    return render(
+        request,
+        'movement/MonthWisePerDayMovement.html',
+        context={
+            'per_day_movement':per_day_count_this_month,
+            'today_year':today_year,
+            'today_month':today_month,
+        }
+    )

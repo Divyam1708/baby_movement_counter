@@ -28,7 +28,9 @@
     </div>
 
     <div class="counter_content">
-
+        <a href="{% url 'movement:month-wise-per-day-counter' month %}">
+            <button> SEE DAY WISE MOVEMENT FOR THIS MONTH</button>
+        </a>
         <p class="headline">
             {{ date }} => {{ movement_count }}
         </p>
