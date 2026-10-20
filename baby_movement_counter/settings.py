@@ -25,10 +25,11 @@ environ.Env.read_env(BASE_DIR/'.env')
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    'baby-movement-counter.onrender.com'
+    'baby-movement-counter.onrender.com',
+    '127.0.0.1'
 ]
 
 
@@ -44,7 +45,9 @@ INSTALLED_APPS = [
     
     'movement',
     
-    'templates'
+    'templates',
+    'whitenoise.runserver_nostatic',
+    
 ]
 
 MIDDLEWARE = [
@@ -55,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'baby_movement_counter.urls'

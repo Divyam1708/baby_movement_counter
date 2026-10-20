@@ -1,39 +1,51 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Movement on {{ date }}</title>
+    <link rel="shortcut icon" href="{% static 'media/logos/counter_icon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'style/movement/base.css' %}">
 </head>
 <body>
 
-    <a href="{% url 'movement:home'%}">
-        <button>
-            HOME
-        </button>
-    </a>
-
-
-    <form action="" method="post">
-        {% csrf_token %}
-        {% for field in form %}
+    <div class="top_bar" > 
+        <a href="{% url 'movement:home'%}">
+            <button>
+                <= HOME
+            </button>
+        </a>
+        
+        
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for field in form %}
             {{ field.label_tag }} : {{ field }}
-        {% endfor %}
-        <button type="submit">Go to Date</button>
-    </form>
+            {% endfor %}
+            <button type="submit">Go to Date</button>
+        </form>
+    </div>
 
-    For : {{ date }}
-    
-    <ol type="1">
-    {% for movement in movements %}
-        <li>
-            {{ movement.time|time|title }}
-            <a href="{% url 'movement:delete-movement' movement.id %}">
-                <button>DELETE</button>
-            </a>
-        </li>    
-    {% endfor %}
-    </ol>
+    <div class="counter_content">
+
+        <p class="headline">
+            {{ date }} => {{ movement_count }}
+        </p>
+        
+        <ol type="1">
+            {% for movement in movements %}
+            <li>
+                <div class="time_box">
+                    {{ movement.time|time:"h : i A" }}
+                </div>
+                <a href="{% url 'movement:delete-movement' movement.id %}">
+                    <button>DELETE</button>
+                </a>
+            </li>    
+            {% endfor %}
+        </ol>
+    </div>
 
 </body>
 </html>

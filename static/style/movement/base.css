@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.top_bar{
+    position: sticky;
+    top: 0px; 
+    background-color: black; 
+    color: wheat; display: 
+    flex; flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    margin-bottom:0.5rem;
+    gap: 1rem;
+    padding-block: 0.3rem;
+}
+
+.counter_content{
+    border: 2px solid red;
+    padding: 0.2rem;
+    height: 100svh;
+}
+
+ol{
+    display: flex;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    flex-direction: column;
+    gap: 0.2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.headline{
+    font-size: 1.5rem;
+    text-align: center; 
+    border-bottom: 5px solid;
+}
+
+.time_box{
+    display:inline;
+    margin-inline: 0.3rem;
+    width: fit-content;
+    padding: 0.1rem;
+    border: 2px solid;
+
+}

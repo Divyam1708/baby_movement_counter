@@ -11,6 +11,7 @@ def home(request):
     movements=Movement.objects.filter(
         time__date=today
     )
+    movement_count_today=movements.count()
     
     if request.method=='POST' and 'movement-recorder' in request.POST:
         form=CreateMovement(request.POST)
@@ -47,7 +48,8 @@ def home(request):
             'movements':movements,
             'form':form,
             'go_to_date_form':go_to_date_form,
-            'today':today
+            'today':today,
+            'movement_count':movement_count_today
         }
     )
     
@@ -64,7 +66,7 @@ def DeleteMovement(request,arg_1_movement_id):
 def GoToDate(request, arg_1_dd,arg_2_mm,arg_3_yyyy):
     
     movements=Movement.objects.filter(time__date=date(arg_3_yyyy,arg_2_mm,arg_1_dd))
-    
+    movement_count_today=movements.count()
     if request.method=='POST':
         form=GoToDateForm(request.POST)
         if(form.is_valid()):
@@ -89,8 +91,9 @@ def GoToDate(request, arg_1_dd,arg_2_mm,arg_3_yyyy):
         'movement/DateMovement.html',
         context={
             'movements':movements,
-            'date':f'{arg_1_dd}/ {arg_2_mm}/ {arg_3_yyyy}',
-            'form':form
+            'form':form,
+            'date':f'{arg_1_dd}/{arg_2_mm}/{arg_3_yyyy}',
+            'movement_count':movement_count_today,
         }
     )
     
