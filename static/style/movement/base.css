@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color: rgba(0,0,0,0.7);
+    color: rgb(255, 247, 232);
+}
+
 .top_bar{
     position: sticky;
     top: 0px; 
@@ -33,6 +38,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.click_me{
+    padding-inline: 1rem;
+    padding-block: 0.3rem;
+    background-color: rgb(6, 116, 90);
+}
+
+.click_me_delete{
+    background-color: rgb(251, 17, 17);
+    padding-inline: 0.3rem;
+    color: antiquewhite;
 }
 
 .fit_content_width{
@@ -66,5 +83,5 @@ a{
     margin-inline: 0.3rem;
     width: fit-content;
     padding: 0.1rem;
-    border: 2px solid;
+    border: 2px solid rgb(158, 123, 75);
 }

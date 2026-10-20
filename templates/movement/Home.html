@@ -18,7 +18,7 @@
                 {{ field.label_tag }} : {{ field }}
                 {% endfor %}
                 <input type="hidden" name="go-to-date">
-                <button type="submit">Go to Date</button>
+                <button class="click_me" type="submit">Go to Date</button>
             </form>
         </div>
         
@@ -27,7 +27,7 @@
                 {% csrf_token %}
                 {{ form }}
                 <input type="hidden" name="movement-recorder">
-                <button style="font-size: 1.5em;" type="submit">RECORD MOVEMENT</button>
+                <button  style="font-size: 1.5em;" type="submit">RECORD MOVEMENT</button>
             </form>
         </div>
 
@@ -37,10 +37,10 @@
     
     <div class="counter_content">
         <a href="{% url 'movement:month-wise-per-day-counter' today|date:'m' %}">
-            <button> SEE DAY WISE MOVEMENT FOR THIS MONTH</button>
+            <button class="click_me">CLICK TO SEE DAY WISE MOVEMENT FOR THIS MONTH</button>
         </a>
         <p class="headline" >
-            {{ today|date:'m' }} =>  {{ movement_count }} 
+            {{ today|date:'d M y' }} =>  [ {{ movement_count }} ] 
         </p>
         <ol type="1">
         {% for movement in movements %}
@@ -49,7 +49,7 @@
                     {{ movement.time|time:"h : i A" }}
                 </div>
                 <a href="{% url 'movement:delete-movement' movement.id %}">
-                    <button>DELETE</button>
+                    <button class="click_me_delete">DELETE</button>
                 </a>
             </li>    
         {% endfor %}

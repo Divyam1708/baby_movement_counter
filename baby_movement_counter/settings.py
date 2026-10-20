@@ -31,6 +31,11 @@ ALLOWED_HOSTS = [
     'baby-movement-counter.onrender.com',
     '127.0.0.1'
 ]
+# DEBUG = True
+
+# ALLOWED_HOSTS = [
+    
+# ]
 
 
 # Application definition
