@@ -34,7 +34,7 @@
             {% for movement in per_day_movement %}
             <tr>
                 <td>
-                    <a href="{% url 'movement:go-to-date' forloop.counter today_month today_year %}">
+                    <a class="content_a" href="{% url 'movement:go-to-date' forloop.counter today_month today_year %}">
                         {{ forloop.counter }}/{{ today_month }}/{{ today_year }}
                     </a>
                 </td>

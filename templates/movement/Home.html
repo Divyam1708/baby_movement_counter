@@ -46,7 +46,7 @@
         {% for movement in movements %}
             <li>
                 <div class="time_box">
-                    {{ movement.time|time:"h : i A" }}
+                    {{ movement.movement_time|time:"h : i A" }}
                 </div>
                 <a href="{% url 'movement:delete-movement' movement.id %}">
                     <button class="click_me_delete">DELETE</button>
@@ -55,5 +55,16 @@
         {% endfor %}
         </ol>
     </div>
+
+    {% comment %}
+    <p style="text-align: center; margin-top: 0.5rem; ">
+        Did you forgot to add a kick of Phoebe Chubi on the exact time?
+        <a style="color: greenyellow;" href="">
+            Click here
+        </a> 
+    </p>
+    {% endcomment %}
+
+
 </body>
 </html>
