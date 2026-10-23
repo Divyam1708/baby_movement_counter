@@ -28,7 +28,7 @@
     </div>
 
     <div class="counter_content">
-        <a href="{% url 'movement:month-wise-per-day-counter' month %}">
+        <a href="{% url 'movement:month-wise-per-day-counter' month year %}">
             <button class="click_me">CLICK TO SEE DAY WISE MOVEMENT FOR THIS MONTH</button>
         </a>
         <p class="headline">
@@ -39,9 +39,9 @@
             {% for movement in movements %}
             <li>
                 <div class="time_box">
-                    {{ movement.time|time:"h : i A" }}
+                    {{ movement.movement_time|time:"h : i A" }}
                 </div>
-                <a href="{% url 'movement:delete-movement' movement.id %}">
+                <a href="{% url 'movement:delete-dated-movement' movement.id %}">
                     <button class="click_me_delete">DELETE</button>
                 </a>
             </li>    

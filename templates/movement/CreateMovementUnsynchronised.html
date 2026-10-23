@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsyncronised Date Movement Register</title>
+    <link rel="shortcut icon" href="{% static 'media/logos/counter_icon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'style/movement/base.css' %}">
+</head>
+<body>
+    <div class="top_bar">
+        <a href="{% url 'movement:home' %}">
+            <button class="click_me">
+                HOME
+            </button>
+        </a>
+    </div>
+        <form class="counter_content"  action="" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            {{ field.label_tag }} {{ field }}
+            {% endfor %}
+            <br>
+            <button  type="submit">Record Movement For This Time</button>
+        </form>
+    
+</body>
+</html>

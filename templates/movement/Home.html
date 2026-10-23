@@ -36,7 +36,7 @@
     
     
     <div class="counter_content">
-        <a href="{% url 'movement:month-wise-per-day-counter' today|date:'m' %}">
+        <a href="{% url 'movement:month-wise-per-day-counter' today|date:'m' today|date:'Y' %}">
             <button class="click_me">CLICK TO SEE DAY WISE MOVEMENT FOR THIS MONTH</button>
         </a>
         <p class="headline" >
@@ -56,14 +56,12 @@
         </ol>
     </div>
 
-    {% comment %}
     <p style="text-align: center; margin-top: 0.5rem; ">
         Did you forgot to add a kick of Phoebe Chubi on the exact time?
-        <a style="color: greenyellow;" href="">
+        <a style="color: greenyellow;" href="{% url 'movement:create-movement-unsynchronised' %}">
             Click here
         </a> 
     </p>
-    {% endcomment %}
 
 
 </body>

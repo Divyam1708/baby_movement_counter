@@ -1,7 +1,6 @@
 from django import forms
 from .models import Movement
 from django.utils import timezone
-
 class CreateMovement(forms.ModelForm):
     class Meta:
         model=Movement
@@ -11,8 +10,25 @@ class CreateMovement(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field_name in self.fields:
             self.fields[field_name].required = False
-            
+
+
+class CreateMovementUnsynchronisedForm(forms.ModelForm):
+    class Meta:
+        model=Movement
+        fields=['movement_time']
         
+        widgets = {
+            'movement_time': forms.DateTimeInput(
+                attrs={
+                    'type': 'datetime-local'
+                },
+                format='%Y-%m-%dT%H:%M'
+            )
+        }
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['movement_time'].initial=timezone.now()
         
         
 class GoToDateForm(forms.Form):
