@@ -1,9 +1,14 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.urls import reverse
-from .models import Movement
-from .forms import CreateMovement, GoToDateForm, CreateMovementUnsynchronisedForm
 from django.utils import timezone
+from django.db.models.functions import ExtractDay
+from django.db.models import Count
+
 from datetime import date
+
+
+from movement.models import Movement
+from .forms import CreateMovement, GoToDateForm, CreateMovementUnsynchronisedForm
 
 def home(request):
     
@@ -131,21 +136,28 @@ def GoToDate(request, arg_1_dd,arg_2_mm,arg_3_yyyy):
     
     
 def MonthWiseDayCounter(request, arg_1_month, arg_2_year):
-    movements=Movement.objects.filter(
+    daily_counts= ( 
+    Movement.objects.filter(
         movement_time__month=arg_1_month,
         movement_time__year=arg_2_year
+    ).annotate(
+        day=ExtractDay('movement_time')
+    ).values(
+        'day'
+    ).annotate(
+        total=Count('id')
+    ).order_by(
+        'day'
+    ) 
     )
-    movement_count=[]
-    for day in range(1,32):
-        movement_count.append(movements.filter(movement_time__day=day).count())
-        
-    per_day_count_this_month=[count for count in movement_count]
+    count_dict = {item['day']: item['total'] for item in daily_counts}
+    movement_count = [count_dict.get(day, 0) for day in range(1, 32)]
     
     return render(
         request,
         'movement/MonthWisePerDayMovement.html',
         context={
-            'per_day_movement':per_day_count_this_month,
+            'per_day_movement':movement_count,
             'today_year':arg_2_year,
             'today_month':arg_1_month,
         }
