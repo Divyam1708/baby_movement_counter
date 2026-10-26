@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class Movement(models.Model):
     movement_time=models.DateTimeField(null=False,blank=True)
-    time=models.DateTimeField(auto_now_add=True)
+    created_time=models.DateTimeField(auto_now_add=True)
     
     def save(self, *args, **kwargs):
         

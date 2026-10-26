@@ -151,7 +151,18 @@ def MonthWiseDayCounter(request, arg_1_month, arg_2_year):
     ) 
     )
     count_dict = {item['day']: item['total'] for item in daily_counts}
-    movement_count = [count_dict.get(day, 0) for day in range(1, 32)]
+    
+    days_in_month=0
+    if (arg_1_month in [1,3,5,7,8,10,12]):
+        days_in_month=31
+    elif(arg_1_month in [4,6,9,11]):
+        days_in_month=30
+    elif((arg_2_year%4==0) and arg_1_month==2):
+        days_in_month=29
+    elif((arg_2_year%4!=0) and arg_1_month==2):
+        days_in_month=28
+    
+    movement_count = [count_dict.get(day, 0) for day in range(1, days_in_month+1)]
     
     return render(
         request,
